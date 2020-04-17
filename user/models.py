@@ -12,3 +12,12 @@ class Employee(models.Model):
 	def __str__(self):
 		return self.name
 
+class Chart(models.Model):
+   year = models.IntegerField()
+   name = models.CharField(max_length=100)
+   sales = models.IntegerField()
+   growth = models.IntegerField()
+   profit = models.IntegerField()
+   
+   def __str__(self):
+      return self.name

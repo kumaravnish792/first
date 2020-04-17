@@ -6,13 +6,20 @@ from .models import *
 
 def home(request):
 	employees = Employee.objects.all()
-	# chart data
-	data = [
-         ['Year', 'Sales', 'Growth', 'Profit'],
-         ['2014', 500, 400, 200],
-         ['2015', 120, 460, 250],
-      	['2016', 660, 120, 300],
-         ['2017', 130, 540, 350]
-      ]
  
-	return render(request, 'user/main.html', {'employees':employees, 'data': data })
+	# chart data
+   all_entries = Chart.objects.all()
+   
+   chart_data = [
+         ['Year', 'Sales', 'Growth', 'Profit']
+   ]
+   
+   for entries in all_entries:
+      chart_data.append([
+         entries.year,
+         entries.sales,
+         entries.growth,
+         entries.profit
+      ])
+ 
+	return render(request, 'user/main.html', {'employees':employees, 'data': chart_data })
